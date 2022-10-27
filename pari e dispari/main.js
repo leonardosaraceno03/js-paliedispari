@@ -1,27 +1,28 @@
 let scelta = prompt("Digita 'Pari' o 'Dispari'")
-let somma = 0;
-var numeroPlayer = 0;
-var numeroCPU = 0;
-if(scelta == "pari"){
+
+
+if(scelta == "pari" || scelta == "dispari"){
     console.log(`hai scelto : ${scelta}`);
-    sceltaNumeroPlayer();
-    generatoreNumeroRandom();
-    sommaNumeri();
-    if(sommaNumeri % 2 == 0){
-        console.log("Hai vinto!")
+    let numeroPlayer = sceltaNumeroPlayer();
+    let numeroCPU = generatoreNumeroRandom();
+    console.log(numeroPlayer)
+    console.log(numeroCPU)
+    // Stampa somma
+    let somma = sommaNumeri(numeroPlayer, numeroCPU);
+    let risultato;
+    if(somma % 2 == 0){
+        risultato = "pari";
     }else{
-        console.log("Hai perso!")
+        risultato = "dispari";
     }
-}else if(scelta == "dispari"){
-    console.log(`hai scelto : ${scelta}`);
-    sceltaNumeroPlayer();
-    generatoreNumeroRandom();
-    sommaNumeri();
-    if(sommaNumeri % 2 !== 0){
-        console.log("Hai vinto!")
+    console.log(risultato)
+    if(scelta == risultato){
+        console.log("hai vinto")
     }else{
-        console.log("Hai perso!")
+        console.log("hai perso")
     }
+
+
 }else{
     console.log("ci sei o ci fai?")
 }
@@ -29,17 +30,20 @@ if(scelta == "pari"){
 
 
 
-function sommaNumeri(){
-    somma = (numeroPlayer + numeroCPU);
+function sommaNumeri(numeroPlayer, numeroCPU){
+    let somma = (numeroPlayer + numeroCPU);
     console.log(`la somma è : ${somma}`)
+    return somma;
 }
 function sceltaNumeroPlayer(){
-    numeroPlayer = prompt("Digita un numero da 1 a 5")
-    console.log(numeroPlayer)
+    let numeroPlayer = parseInt(prompt("Digita un numero da 1 a 5"))
+    
+    return numeroPlayer;
 
 }
 
 function generatoreNumeroRandom(){
-    numeroCPU = Math.round(Math.random() * 5) + 1;
-    console.log(numeroCPU)
+    let numeroCPU = Math.round(Math.random() * 5) + 1;
+    
+    return numeroCPU;
 }
